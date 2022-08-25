@@ -1,0 +1,136 @@
+* { box-sizing: border-box; }
+
+button, input[type="submit"], input[type="reset"], input[type="button"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+input[type="text"], input[type="password"] {
+    background: white;
+	color: black;
+	border: 1px solid black;
+	padding: 5px;
+	font: inherit;
+	outline: inherit;
+}
+
+body {
+    margin: 0;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 100%;
+}
+
+h1 { font-size: 2.5em; }
+
+h2 { font-size: 1.875em; }
+
+p { font-size: 1em; }
+
+a { text-decoration: none;  transition: ease-in-out .3s; }
+
+/* site title and user info */
+
+.banner {
+    display: flex;
+    align-items: center;
+    background: black;
+    color: #cccccc;
+    width: 100%;
+    min-height: 10vh;
+    padding: 0 30px;
+}
+
+.banner h1 {
+    transition: ease-in-out .3s;
+}
+
+.banner h1:hover {
+    color: white;
+}
+
+.banner .userinfo {
+    flex-grow: 8;
+    text-align: right;
+    padding: 0 30px
+}
+
+.banner .userinfo a { color: #cccccc; }
+.banner .userinfo a:hover { color: white; }
+
+.banner .useravatar { width: 40px; }
+
+/* column container */
+.row {  
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 90vh;
+}
+
+/* menu column */
+.menu {
+    flex: 15%;
+    background: black;
+    color: #cccccc;
+    text-align: center;
+}
+
+.menu .btn {
+    display: block;
+    width: 100%;
+    color: #cccccc;
+    padding: 15px 0;
+}
+
+.menu .btn:hover {
+    background: green;
+    color: white;
+}
+
+/* main column */
+.main {
+    flex: 85%;
+    background: #cccccc;
+    padding: 20px;
+}
+
+.main .btn {
+    background: black;
+    color: #cccccc;
+    border: 1px solid black;
+    padding: 5px;
+    transition: color ease-in-out .3s;
+}
+
+.main .btn:hover { color: white; }
+
+.inputGroup {
+    display: inline-block;
+    padding: 20px 20px;
+}
+
+.inputGroup label {
+    display: block;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.inputGroup .errorMessage {
+    display: block;
+    position: absolute;
+    font-size: 0.8em;
+}
+
+#loginRegister {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#loginRegister .btn {
+    margin-top: 10px;
+}
