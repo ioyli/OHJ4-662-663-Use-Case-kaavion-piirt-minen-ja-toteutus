@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="styles/style.css">
         <script defer src="js/auth.js"></script>
         <script defer src="init.js"></script>
+        <script defer src="js/poll.js"></script>
     </head>
 
     <body>
@@ -25,7 +26,19 @@
             </div>
             
             <div class="main">
-                <p>content</p>
+                <h2>Add new Poll</h2>
+                <form id="addPollForm">
+                    <div class="inputGroup">
+                        <label for="title" class="label">Title</label>
+                        <input type="text" name="title" class="input">
+                        <span class="errorMessage"></span>
+                    </div>
+                    <div class="inputGroup">
+                        <label for="option" class="label">Option</label>
+                        <input type="text" name="option" class="input">
+                        <span class="errorMessage"></span>
+                    </div>
+                </form>
             </div>
 
         </div>
