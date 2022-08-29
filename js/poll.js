@@ -1,29 +1,15 @@
 class Poll {
-    constructor(form, title) {
+    constructor(form, fields, options, title) {
         this.form = form;
+        this.fields = fields;
+        this.options = options;
         this.title = title;
-        this.options = [];
         this.validateOnSubmit();
-    }
-
-    addOption(option) {
-        let error = 0;
-
-        if (this.validateOptions(option) === false) {
-            error++;
-        }
-
-        if (error === 0) {
-            let objOption = {
-                name: `${option}`,
-                votes: 0
-            }
-            this.options.push(objOption);
-        }
+        this.addOptionField();
+        this.removeOptionField();
     }
 
     validateOnSubmit() {
-        let self = this;
 
         // add submit event listener to form
         this.form.addEventListener("submit", (e) => {
@@ -31,62 +17,108 @@ class Poll {
             e.preventDefault();
             let error = 0;
 
-            if (self.title.value.trim === "") {
-                alert("Poll title cannot be blank.");
-                error++;
-            }
-
-            if (self.options.length < 2) {
-                alert("Poll must have at least 2 options.");
-                error++;
-            }
-
-            // loop through options and check each for validation
-            self.options.forEach((option) => {
-                const input = document.querySelector(`#${option}`);
-                if (self.validateOptions(input) === false) {
+            // loop through fields and check each for validation
+            this.fields.forEach((field) => {
+                const input = document.querySelector(`#${field}`);
+                if (this.validateFields(input) === false) {
                     error++;
                 }
             });
 
             if (error === 0) {
-                // ADD NEW POLL TO POLLS
-                this.form.submit;
+                // configure poll options
+                for (let i = 0; i < this.fields.length; i++) {
+                    let title = document.getElementById(`option${i + 1}`).value;
+                    this.configureOption(title);
+                }
+
+                // ADD POLL TO POLLS
+                this.form.submit();
             }
         })
     }
 
-    validateOptions(option) {
-        // remove any whitespace, if option is blank, return false
-        if (option.value.trim === "") {
-            // set status on option, option label, and error message
+    validateFields(field) {
+        // remove any white space, if field is blank, return false
+        if (field.value.trim() === "") {
+            // set status based on field, field label, and error message
             this.setStatus(
-                option,
-                `${option.previousElementSibling.innerText} cannot be blank.`, "error"
+                field,
+                `${field.previousElementSibling.innerText} cannot be blank.`, "error"
             );
             return false;
-
         } else {
-            // set status on option, no label, and success message
-            this.setStatus(option, null, "success");
+            // set status based on field, no text, and success message
+            this.setStatus(field, null, "success");
             return true;
         }
     }
 
-    setStatus(option, message, status) {
-        const errorMessage = option.parentElement.querySelector(".errorMessage");
+    setStatus(field, message, status) {
+        const errorMessage = field.parentElement.querySelector(".errorMessage");
 
         // if success, remove error messages and classes
         if (status === "success") {
             if (errorMessage) {
                 errorMessage.innerText = "";
             }
-            option.classList.remove("inputError");
+            field.classList.remove("inputError");
         }
 
         if (status === "error") {
             errorMessage.innerText = message;
-            option.classList.add("inputError");
+            field.classList.add("inputError");
         }
     }
+
+    configureOption(title) {
+        this.options.push({
+            title: title,
+            votes: 0
+        })
+    }
+
+    addOptionField() {
+
+        // add click event listener to button
+        document.getElementById('addOption').addEventListener("click", (e) => {
+            let id = this.fields.length;
+    
+            document.getElementById('optionFields').innerHTML += `
+            <div class="inputGroup">
+                <label for="option${id}" class="label">Option</label>
+                <input type="text" id="option${id}" name="option${id}" class="input">
+                <span class="errorMessage"></span>
+            </div>`;
+
+            this.fields.push(`option${id}`);
+        })
+    }
+
+    removeOptionField() {
+
+        // add click event listener to button
+        document.getElementById('removeOption').addEventListener("click", (e) => {
+            let allFields = document.getElementById('optionFields');
+    
+            // if only 2 options are present, prevent removal
+            if (this.fields.length <= 3) {
+                alert("Poll must have at least 2 options.")
+            } else {
+                if (allFields.hasChildNodes()) {
+                    allFields.removeChild(allFields.children[allFields.children.length - 1]);
+                    this.fields.pop();
+                }
+            }
+        })
+    }
+}
+
+const form = document.getElementById('addPoll');
+// if form exists, run class
+if (form) {
+    const fields = ["title", "option1", "option2"];
+    const options = [];
+    const title = "";
+    const validator = new Poll (form, fields, options, title);
 }

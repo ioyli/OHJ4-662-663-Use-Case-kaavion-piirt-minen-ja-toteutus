@@ -35,7 +35,6 @@ p { font-size: 1em; }
 a { text-decoration: none;  transition: ease-in-out .3s; }
 
 /* site title and user info */
-
 .banner {
     display: flex;
     align-items: center;
@@ -96,27 +95,31 @@ a { text-decoration: none;  transition: ease-in-out .3s; }
 .main {
     flex: 85%;
     background: #cccccc;
-    padding: 20px;
+    padding: 20px 20px 20px 40px;
 }
 
 .main .btn {
     background: black;
     color: #cccccc;
-    border: 1px solid black;
-    padding: 5px;
-    transition: color ease-in-out .3s;
+    padding: 10px;
+    transition: ease-in-out .3s;
 }
 
-.main .btn:hover { color: white; }
+.main .btn:hover { color: white; background: green; }
 
 .inputGroup {
     display: inline-block;
     padding: 20px 20px;
 }
 
+.inputGroup .btn {
+    margin-right: 20px;
+    padding: 10px;
+}
+
 .inputGroup label {
     display: block;
-    margin: 10px 0;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 

@@ -6,7 +6,6 @@ class Login {
     }
 
     validateOnSubmit() {
-        let self = this;
 
         // add submit event listener to form
         this.form.addEventListener("submit", (e) => {
@@ -15,9 +14,9 @@ class Login {
             let error = 0;
 
             // loop through fields and check each for validation
-            self.fields.forEach((field) => {
+            this.fields.forEach((field) => {
                 const input = document.querySelector(`#${field}`);
-                if (self.validateFields(input) === false) {
+                if (this.validateFields(input) === false) {
                     error++;
                 }
             });
