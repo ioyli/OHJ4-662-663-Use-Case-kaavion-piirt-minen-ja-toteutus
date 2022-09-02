@@ -22,7 +22,7 @@ class Login {
             });
 
             if (error === 0) {
-                localStorage.setItem("auth", 1);
+                localStorage.setItem("auth", "valid");
                 this.form.submit();
             }
         })

@@ -62,8 +62,6 @@ a { text-decoration: none;  transition: ease-in-out .3s; }
 .banner .userinfo a { color: #cccccc; }
 .banner .userinfo a:hover { color: white; }
 
-.banner .useravatar { width: 40px; }
-
 /* column container */
 .row {  
     display: flex;
@@ -136,4 +134,43 @@ a { text-decoration: none;  transition: ease-in-out .3s; }
 
 #loginRegister .btn {
     margin-top: 10px;
+}
+
+/* polls */
+#allPolls {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.poll {
+    background: black;
+    color: #ccc;
+    margin: 20px;
+    max-width: 800px;
+}
+
+.poll .title {
+    background: green;
+    color: white;
+    padding: 20px;
+}
+
+.poll .option {
+    display: inline-block;
+    padding: 20px;
+    min-width: 150px;
+}
+
+.poll .option .name {
+    font-weight: bold;
+}
+
+.poll .option .votes {
+    display: none;
+    margin-top: 20px;
+    font-size: .9em;
+}
+
+.voted {
+    color: green;
 }
